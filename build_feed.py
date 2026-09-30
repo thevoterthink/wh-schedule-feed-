@@ -74,7 +74,8 @@ def build(events):
             "</item>"
         )
 
-    now = format_datetime(datetime.now(NY))
+    # Use the newest event time, not the clock, so the file only changes when the schedule does.
+    now = format_datetime(event_time(kept[0])) if kept else format_datetime(datetime.now(NY))
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<rss version="2.0"><channel>'
